@@ -5,7 +5,7 @@
     	<script src="http://d3js.org/d3.v3.min.js"></script>
     	<script src="http://dimplejs.org/dist/dimple.v2.1.2.min.js"></script>
     	<style type="text/css">
-    		.page-wrap {
+    		#page-wrap {
     			width: 800px;
     			margin: 0 auto;
     		}
@@ -17,30 +17,24 @@
     	<title>Intro to D3 - Final Visualization</title>
     </head>
 	<body>
-		<div class="page-wrap">
+		<div id="page-wrap">
 			<div class="header"><h1>Is Soccer Refereeing Changing?</h1></div>
 			<div class="fouls chart" id="myChart">
 				<h3>Fouls Per Game and Per Card (Yellow + Red) for Big Four European Leagues</h3>
 				<script type="text/javascript">
-					//First create svg variable and setup an array to properly order the seasons on the x axis
 				    var svg = dimple.newSvg("#myChart", 590, 650);
 				    var season_order = ["05/06", "06/07", "07/08", "08/09", "09/10", "10/11", "11/12", "12/13", "13/14", "14/15"];
 				    d3.csv("fouls.csv", function (data) {
-				    	//chart1 is the fouls per game chart
-				    	//it will be the top chart in the two-chart display
 				          var chart1 = new dimple.chart(svg, data);
 				          chart1.setBounds(60, "5%", 505, "35%");
 				          var x1 = chart1.addCategoryAxis("x", "season");
 				          x1.addOrderRule(season_order);
-				          x1.title = "";  //the title on the bottom x axis should be enough for both charts
-				          var y1 = chart1.addMeasureAxis("y", "fouls_per_game");
-				          y1.overrideMin = 10;  //zoom in a little to make the reduction over time more apparent
-				          y1.title = "Fouls Called Per Game";
+				          chart1.addMeasureAxis("y", "fouls_per_game");
 				          chart1.addSeries("league", dimple.plot.line);
-				          chart1.assignColor("England", "#ef3b2c", "#ef3b2c", 1);
-				          chart1.assignColor("Spain", "#fd8d3c", "#fd8d3c", 1);
-				          chart1.assignColor("Italy", "#4292c6", "#4292c6", 1);
-				          chart1.assignColor("Germany", "#525252", "#525252", 1);
+				          chart1.assignColor("England", "red", "red", 1);
+				          chart1.assignColor("Spain", "orange", "orange", 1);
+				          chart1.assignColor("Italy", "blue", "blue", 1);
+				          chart1.assignColor("Germany", "black", "black", 1);
 				          chart1.addLegend(60, 10, 500, 20, "right");
 				          chart1.draw();
 
@@ -48,15 +42,12 @@
 				          chart2.setBounds(60, "50%", 505, "35%");
 				          var x2 = chart2.addCategoryAxis("x", "season");
 				          x2.addOrderRule(season_order);
-				          x2.title = "Season";
-				          var y2 = chart2.addMeasureAxis("y", "fouls_per_card");
-				          y2.overrideMin = 3;  //zoom in a little to make the reduction over time more apparent
-				          y2.title = "Fouls Called Per Card Given (Yellow + Red)";
+				          chart2.addMeasureAxis("y", "fouls_per_card");
 				          chart2.addSeries("league", dimple.plot.line);
-				          chart2.assignColor("England", "#ef3b2c", "#ef3b2c", 1);
-				          chart2.assignColor("Spain", "#fd8d3c", "#fd8d3c", 1);
-				          chart2.assignColor("Italy", "#4292c6", "#4292c6", 1);
-				          chart2.assignColor("Germany", "#525252", "#525252", 1);
+				          chart2.assignColor("England", "red", "red", 1);
+				          chart2.assignColor("Spain", "orange", "orange", 1);
+				          chart2.assignColor("Italy", "blue", "blue", 1);
+				          chart2.assignColor("Germany", "black", "black", 1);
 				          chart2.draw();
 				      });
 				</script>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+    	<script src="http://d3js.org/d3.v3.min.js"></script>
+    	<script src="http://dimplejs.org/dist/dimple.v2.1.2.min.js"></script>
+    	<style type="text/css"></style>
+    	<title>Intro to D3 - Final Visualization</title>
+	</head>
+	<body>
+		<div class="header"><h1>Is Soccer Refereeing Changing?</h1></div>
+		<div class="pergame chart1" id="chart1">
+			<h2>Fouls Per Game for Big Four European Leagues</h2>
+			<script type="text/javascript">
+			    var svg1 = dimple.newSvg("#chart1", 590, 400);
+			    d3.csv("fouls_per_game.csv", function (fouls) {
+			          var myChart = new dimple.chart(svg1, fouls);
+			          myChart.setBounds(60, 30, 505, 305);
+			          myChart.addCategoryAxis("x", "season");
+			          myChart.addMeasureAxis("y", "fouls_per_game");
+			          myChart.addSeries("league", dimple.plot.line);
+			          myChart.addLegend(60, 10, 500, 20, "right");
+			          myChart.draw();
+			      });
+			</script>
+		</div>
+		<div class="percard chart2" id="chart2">
+			<h2>Fouls Per Card for Big Four European Leagues</h2>
+			<script type="text/javascript">
+			    var svg2 = dimple.newSvg("#chart2", 590, 400);
+			    d3.csv("fouls_per_card.csv", function (cards) {
+			          var myChart = new dimple.chart(svg2, cards);
+			          myChart.setBounds(60, 30, 505, 305);
+			          myChart.addCategoryAxis("x", "season");
+			          myChart.addMeasureAxis("y", "fouls_per_card");
+			          myChart.addSeries("league", dimple.plot.line);
+			          myChart.addLegend(60, 10, 500, 20, "right");
+			          myChart.draw();
+			      });
+			</script>
+		</div>
+	</body>
+</html>
