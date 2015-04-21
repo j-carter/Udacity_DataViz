@@ -23,13 +23,13 @@
 				<h3>Fouls Per Game and Per Card (Yellow + Red) for Big Four European Leagues</h3>
 				<script type="text/javascript">
 					//First create svg variable and setup an array to properly order the seasons on the x axis
-				    var svg = dimple.newSvg("#myChart", 650, 650);
+				    var svg = dimple.newSvg("#myChart", 590, 650);
 				    var season_order = ["05/06", "06/07", "07/08", "08/09", "09/10", "10/11", "11/12", "12/13", "13/14", "14/15"];
-				    d3.csv("data/fouls.csv", function (data) {
+				    d3.csv("fouls.csv", function (data) {
 				    	//chart1 is the fouls per game chart
 				    	//it will be the top chart in the two-chart display
 				          var chart1 = new dimple.chart(svg, data);
-				          chart1.setBounds(60, "5%", 565, "35%");
+				          chart1.setBounds(60, "5%", 505, "35%");
 				          var x1 = chart1.addCategoryAxis("x", "season");
 				          x1.addOrderRule(season_order);
 				          x1.title = "";  //the title on the bottom x axis should be enough for both charts
@@ -41,11 +41,11 @@
 				          chart1.assignColor("Spain", "#fd8d3c", "#fd8d3c", 1);
 				          chart1.assignColor("Italy", "#4292c6", "#4292c6", 1);
 				          chart1.assignColor("Germany", "#525252", "#525252", 1);
-				          chart1.addLegend(60, 10, 560, 20, "right");
+				          chart1.addLegend(60, 10, 500, 20, "right");
 				          chart1.draw();
 
 				          var chart2 = new dimple.chart(svg, data);
-				          chart2.setBounds(60, "50%", 565, "35%");
+				          chart2.setBounds(60, "50%", 505, "35%");
 				          var x2 = chart2.addCategoryAxis("x", "season");
 				          x2.addOrderRule(season_order);
 				          x2.title = "Season";
@@ -60,14 +60,6 @@
 				          chart2.draw();
 				      });
 				</script>
-			</div>
-			<div class="links">
-				<p>Helpful Links:</p>
-				<ul>
-					<li><a href="http://www.football-data.co.uk/data.php">Source data</a></li>
-					<li><a href="http://en.wikipedia.org/wiki/Fouls_and_misconduct_%28association_football%29">Soccer fouls, yellow and red cards explained</a></li>
-					<li><a href="http://www.bbc.com/sport/0/football/22253531">BBC article from 2013 discussing the drop in fouls since 2006</a></li>
-				</ul>
 			</div>
 		</div>
 	</body>
